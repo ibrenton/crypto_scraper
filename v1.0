@@ -1,0 +1,23 @@
+import urllib2
+from bs4 import BeautifulSoup
+
+SnP_url = "https://www.bloomberg.com/quote/SPX:IND"
+page = urllib2.urlopen(SnP_url)
+soup = BeautifulSoup(page, 'html.parser')
+
+#scrape and print name
+name_box = soup.find('h1', attrs={'class': 'name'})
+name = name_box.text.strip()
+print name
+
+#scrape and print price
+price_box = soup.find('div', attrs={'class': 'price'})
+price = price_box.text.strip()
+print price
+
+#scrape and print point change
+#pointChange_box = soup.find()
+#scrape and print percentage change
+percentage_box = soup.find('div', attrs={'class': 'change-container'})
+percentage = percentage_box.text.strip()
+print percentage
