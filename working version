@@ -2,15 +2,28 @@ import urllib2
 from bs4 import BeautifulSoup
 import datetime
 
-#def main():
+def main():
+	command = raw_input("What would you like to do? (s)ee current prices, (c)alculate portfolio value, (e)xit...").lower()
+	if command == "s":
+		print "BTC: $" + str(BTC_stripped) + "\n" + "LTC: $" + str(LTC_stripped) + "\n" + "BCH: $" + str(BCH_stripped) + "\n" + "ETH: $" + str(ETH_stripped)
+		main()
+	elif command == "c":
+		identity_check()
+	elif command == "e":
+		return
+	else:
+		print "Invalid input: please select one of the choices" + "\n"
+		main()
+	return
 	
 def identity_check():
 	name = raw_input("Please enter your name...")
 	if name.lower() == "ian":
 		ian_wallet()
+		main()
 	else:
 		guest_wallet(name)
-	return;
+		main()
 
 def ian_wallet():
 	#Wallet amounts
@@ -29,7 +42,6 @@ def ian_wallet():
 	#PRINTS
 	print str(now)
 	print "Wallet value: $" + str(wallet_value)
-	return;
 
 def guest_wallet(name):
 	print "Welcome " + name
@@ -74,7 +86,6 @@ BTC_stripped = float(BTC_price.text.strip())
 CoinBase_BCH_url = "https://coinmarketcap.com/currencies/bitcoin-cash/"
 page = urllib2.urlopen(CoinBase_BCH_url)
 soup = BeautifulSoup(page, 'html.parser')
-now = datetime.datetime.now()
 
 BCH_price = soup.find(attrs={'class': "text-large2"})
 BCH_stripped = float(BCH_price.text.strip())
@@ -83,7 +94,6 @@ BCH_stripped = float(BCH_price.text.strip())
 CoinBase_LTC_url = "https://coinmarketcap.com/currencies/litecoin/"
 page = urllib2.urlopen(CoinBase_LTC_url)
 soup = BeautifulSoup(page, 'html.parser')
-now = datetime.datetime.now()
 
 LTC_price = soup.find(attrs={'class': "text-large2"})
 LTC_stripped = float(LTC_price.text.strip())
@@ -92,12 +102,8 @@ LTC_stripped = float(LTC_price.text.strip())
 CoinBase_ETH_url = "https://coinmarketcap.com/currencies/ethereum/"
 page = urllib2.urlopen(CoinBase_ETH_url)
 soup = BeautifulSoup(page, 'html.parser')
-now = datetime.datetime.now()
 
 ETH_price = soup.find(attrs={'class': "text-large2"})
 ETH_stripped = float(ETH_price.text.strip())
 
-#print "BTC: $" + BTC_stripped
-#print  "\n" + "LTC: $" + LTC_stripped
-
-identity_check()
+main()
