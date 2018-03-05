@@ -1,2 +1,2 @@
 # first_scraper
-S&amp;P 500 basic scraper
+Cryptocurrency scraping script: uses Coinmarketcap.com info for BTC, BCH, LTC, and ETH
