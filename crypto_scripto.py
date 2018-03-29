@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 
 def main():
-	command = raw_input("What would you like to do? (s)ee current prices, (c)alculate portfolio value, (e)xit...").lower()
+	command = raw_input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
 	if command == "s":
 		print "BTC: $" + str(BTC_stripped) + "\n" + "LTC: $" + str(LTC_stripped) + "\n" + "BCH: $" + str(BCH_stripped) + "\n" + "ETH: $" + str(ETH_stripped)
 		main()
