@@ -1,23 +1,23 @@
-import urllib2
+import urllib.request
 from bs4 import BeautifulSoup
 import datetime
 
 def main():
-	command = raw_input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
+	command = input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
 	if command == "s":
-		print "BTC: $" + str(BTC_stripped) + "\n" + "LTC: $" + str(LTC_stripped) + "\n" + "BCH: $" + str(BCH_stripped) + "\n" + "ETH: $" + str(ETH_stripped)
+		print("BTC: $" + str(BTC_stripped) + "\n" + "LTC: $" + str(LTC_stripped) + "\n" + "BCH: $" + str(BCH_stripped) + "\n" + "ETH: $" + str(ETH_stripped))
 		main()
 	elif command == "c":
 		identity_check()
 	elif command == "e":
 		return
 	else:
-		print "Invalid input: please select one of the choices" + "\n"
+		print("Invalid input: please select one of the choices" + "\n")
 		main()
 	return
 	
 def identity_check():
-	name = raw_input("Please enter your name...")
+	name = input("Please enter your name...")
 	if name.lower() == "ian":
 		ian_wallet()
 		main()
@@ -40,25 +40,25 @@ def ian_wallet():
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print str(now)
-	print "Wallet value: $" + str(wallet_value)
+	print(str(now))
+	print("Wallet value: $" + str(wallet_value))
 
 def guest_wallet(name):
-	print "Welcome " + name
-	if raw_input("Do you have BTC? (Y or N)...") == "Y":
-		BTC_quant = float(raw_input("How much?..."))
+	print("Welcome " + name)
+	if input("Do you have BTC? (Y or N)...") == "Y":
+		BTC_quant = float(input("How much?..."))
 	else: BTC_quant = 0.0
 
-	if raw_input("Do you have BCH? (Y or N)...") == "Y":
-		BCH_quant = float(raw_input("How much?..."))
+	if input("Do you have BCH? (Y or N)...") == "Y":
+		BCH_quant = float(input("How much?..."))
 	else: BCH_quant = 0.0
 
-	if raw_input("Do you have LTC? (Y or N)...") == "Y":
-		LTC_quant = float(raw_input("How much?..."))
+	if input("Do you have LTC? (Y or N)...") == "Y":
+		LTC_quant = float(input("How much?..."))
 	else: LTC_quant = 0.0
 
-	if raw_input("Do you have ETH? (Y or N)...") == "Y":
-		ETH_quant = float(raw_input("How much?..."))
+	if input("Do you have ETH? (Y or N)...") == "Y":
+		ETH_quant = float(input("How much?..."))
 	else: ETH_quant = 0.0
 
 	#Calculations
@@ -69,13 +69,13 @@ def guest_wallet(name):
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print str(now)
-	print "Wallet value: $" + str(wallet_value)
-	return;	
+	print(str(now))
+	print("Wallet value: $" + str(wallet_value))
+	return
 
 #BTC
 CoinBase_BTC_url = "https://coinmarketcap.com/currencies/bitcoin/"
-page = urllib2.urlopen(CoinBase_BTC_url)
+page = urllib.request.urlopen(CoinBase_BTC_url)
 soup = BeautifulSoup(page, 'html.parser')
 now = datetime.datetime.now()
 
@@ -84,7 +84,7 @@ BTC_stripped = float(BTC_price.text.strip())
 
 #BCH
 CoinBase_BCH_url = "https://coinmarketcap.com/currencies/bitcoin-cash/"
-page = urllib2.urlopen(CoinBase_BCH_url)
+page = urllib.request.urlopen(CoinBase_BCH_url)
 soup = BeautifulSoup(page, 'html.parser')
 
 BCH_price = soup.find(attrs={'class': "text-large2"})
@@ -92,7 +92,7 @@ BCH_stripped = float(BCH_price.text.strip())
 
 #LTC
 CoinBase_LTC_url = "https://coinmarketcap.com/currencies/litecoin/"
-page = urllib2.urlopen(CoinBase_LTC_url)
+page = urllib.request.urlopen(CoinBase_LTC_url)
 soup = BeautifulSoup(page, 'html.parser')
 
 LTC_price = soup.find(attrs={'class': "text-large2"})
@@ -100,7 +100,7 @@ LTC_stripped = float(LTC_price.text.strip())
 
 #ETH
 CoinBase_ETH_url = "https://coinmarketcap.com/currencies/ethereum/"
-page = urllib2.urlopen(CoinBase_ETH_url)
+page = urllib.request.urlopen(CoinBase_ETH_url)
 soup = BeautifulSoup(page, 'html.parser')
 
 ETH_price = soup.find(attrs={'class': "text-large2"})
