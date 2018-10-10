@@ -1,11 +1,12 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import datetime
+import prices
 
 def main():
 	command = input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
 	if command == "s":
-		print("BTC: $" + str(BTC_stripped) + "\n" + "LTC: $" + str(LTC_stripped) + "\n" + "BCH: $" + str(BCH_stripped) + "\n" + "ETH: $" + str(ETH_stripped))
+		print("BTC: $" + str(prices.BTC_stripped) + "\n" + "LTC: $" + str(prices.LTC_stripped) + "\n" + "BCH: $" + str(prices.BCH_stripped) + "\n" + "ETH: $" + str(prices.ETH_stripped))
 		main()
 	elif command == "c":
 		identity_check()
@@ -33,14 +34,14 @@ def ian_wallet():
 	ETH_quant = 0.31473064
 
 	#Calculations
-	BTC_value = BTC_stripped * BTC_quant
-	BCH_value = BCH_stripped * BCH_quant
-	LTC_value = LTC_stripped * LTC_quant
-	ETH_value = ETH_stripped * ETH_quant
+	BTC_value = prices.BTC_stripped * BTC_quant
+	BCH_value = prices.BCH_stripped * BCH_quant
+	LTC_value = prices.LTC_stripped * LTC_quant
+	ETH_value = prices.ETH_stripped * ETH_quant
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print(str(now))
+	print(str(datetime.time))
 	print("Wallet value: $" + str(wallet_value))
 
 def guest_wallet(name):
@@ -60,7 +61,7 @@ def guest_wallet(name):
 	if input("Do you have ETH? (Y or N)...") == "Y":
 		ETH_quant = float(input("How much?..."))
 	else: ETH_quant = 0.0
-
+	
 	#Calculations
 	BTC_value = BTC_stripped * BTC_quant
 	BCH_value = BCH_stripped * BCH_quant
@@ -69,41 +70,8 @@ def guest_wallet(name):
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print(str(now))
+	print(str(datetime.time))
 	print("Wallet value: $" + str(wallet_value))
 	return
-
-#BTC
-CoinBase_BTC_url = "https://coinmarketcap.com/currencies/bitcoin/"
-page = urllib.request.urlopen(CoinBase_BTC_url)
-soup = BeautifulSoup(page, 'html.parser')
-now = datetime.datetime.now()
-
-BTC_price = soup.find(attrs={'class': "text-large2"})
-BTC_stripped = float(BTC_price.text.strip())
-
-#BCH
-CoinBase_BCH_url = "https://coinmarketcap.com/currencies/bitcoin-cash/"
-page = urllib.request.urlopen(CoinBase_BCH_url)
-soup = BeautifulSoup(page, 'html.parser')
-
-BCH_price = soup.find(attrs={'class': "text-large2"})
-BCH_stripped = float(BCH_price.text.strip())
-
-#LTC
-CoinBase_LTC_url = "https://coinmarketcap.com/currencies/litecoin/"
-page = urllib.request.urlopen(CoinBase_LTC_url)
-soup = BeautifulSoup(page, 'html.parser')
-
-LTC_price = soup.find(attrs={'class': "text-large2"})
-LTC_stripped = float(LTC_price.text.strip())
-
-#ETH
-CoinBase_ETH_url = "https://coinmarketcap.com/currencies/ethereum/"
-page = urllib.request.urlopen(CoinBase_ETH_url)
-soup = BeautifulSoup(page, 'html.parser')
-
-ETH_price = soup.find(attrs={'class': "text-large2"})
-ETH_stripped = float(ETH_price.text.strip())
 
 main()
