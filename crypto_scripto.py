@@ -1,12 +1,12 @@
-import urllib.request
-from bs4 import BeautifulSoup
+import requests
+import json
 import datetime
 import prices
 
 def main():
 	command = input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
 	if command == "s":
-		print("BTC: $" + str(prices.BTC_stripped) + "\n" + "LTC: $" + str(prices.LTC_stripped) + "\n" + "BCH: $" + str(prices.BCH_stripped) + "\n" + "ETH: $" + str(prices.ETH_stripped))
+		print("BTC: $" + str(prices.BTC_price) + "\n" + "LTC: $" + str(prices.LTC_price) + "\n" + "BCH: $" + str(prices.BCH_price) + "\n" + "ETH: $" + str(prices.ETH_price))
 		main()
 	elif command == "c":
 		identity_check()
@@ -34,10 +34,10 @@ def ian_wallet():
 	ETH_quant = 0.31473064
 
 	#Calculations
-	BTC_value = prices.BTC_stripped * BTC_quant
-	BCH_value = prices.BCH_stripped * BCH_quant
-	LTC_value = prices.LTC_stripped * LTC_quant
-	ETH_value = prices.ETH_stripped * ETH_quant
+	BTC_value = prices.BTC_price * BTC_quant
+	BCH_value = prices.BCH_price * BCH_quant
+	LTC_value = prices.LTC_price * LTC_quant
+	ETH_value = prices.ETH_price * ETH_quant
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
@@ -63,14 +63,14 @@ def guest_wallet(name):
 	else: ETH_quant = 0.0
 	
 	#Calculations
-	BTC_value = BTC_stripped * BTC_quant
-	BCH_value = BCH_stripped * BCH_quant
-	LTC_value = LTC_stripped * LTC_quant
-	ETH_value = ETH_stripped * ETH_quant
+	BTC_value = prices.BTC_price * BTC_quant
+	BCH_value = prices.BCH_price * BCH_quant
+	LTC_value = prices.LTC_price * LTC_quant
+	ETH_value = prices.ETH_price * ETH_quant
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print(str(datetime.time))
+	print(datetime.now())
 	print("Wallet value: $" + str(wallet_value))
 	return
 
