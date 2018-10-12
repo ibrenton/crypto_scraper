@@ -4,9 +4,9 @@ import datetime
 import prices
 
 def main():
-	command = input("What would you like to do?...\n (s)ee current prices, (c)alculate portfolio value, or (e)xit...").lower()
+	command = input("-------------------------------------------------------------------\nWhat would you like to do?\n (s)ee current prices, (c)alculate portfolio value, or (e)xit: ").lower()
 	if command == "s":
-		print("BTC: $" + str(prices.BTC_price) + "\n" + "LTC: $" + str(prices.LTC_price) + "\n" + "BCH: $" + str(prices.BCH_price) + "\n" + "ETH: $" + str(prices.ETH_price))
+		print("-------------------------------------------------------------------\nBTC: $" + str(prices.BTC_price) + "\n" + "LTC: $" + str(prices.LTC_price) + "\n" + "BCH: $" + str(prices.BCH_price) + "\n" + "ETH: $" + str(prices.ETH_price))
 		main()
 	elif command == "c":
 		identity_check()
@@ -18,8 +18,9 @@ def main():
 	return
 	
 def identity_check():
-	name = input("Please enter your name...")
+	name = input("-------------------------------------------------------------------\nPlease enter your name: ")
 	if name.lower() == "ian":
+		print("-------------------------------------------------------------------")
 		ian_wallet()
 		main()
 	else:
@@ -28,9 +29,9 @@ def identity_check():
 
 def ian_wallet():
 	#Wallet amounts
-	BTC_quant = 0.496
+	BTC_quant = 0.5271
 	LTC_quant = 9.00727417
-	BCH_quant = 0.23084719
+	BCH_quant = 0.0577
 	ETH_quant = 0.31473064
 
 	#Calculations
@@ -38,11 +39,11 @@ def ian_wallet():
 	BCH_value = prices.BCH_price * BCH_quant
 	LTC_value = prices.LTC_price * LTC_quant
 	ETH_value = prices.ETH_price * ETH_quant
-	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
+	wallet_value = round(BTC_value + BCH_value + LTC_value + ETH_value, 2)
 	
 	#PRINTS
 	print(datetime.datetime.now())
-	print("Wallet value: $" + str(wallet_value))
+	print("Welcome Ian!\n     Wallet value: $" + str(wallet_value))
 
 def guest_wallet(name):
 	print("Welcome " + name)
