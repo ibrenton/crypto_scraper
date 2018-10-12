@@ -70,7 +70,7 @@ def guest_wallet(name):
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print(datetime.now())
+	print(datetime.datetime.now())
 	print("Wallet value: $" + str(wallet_value))
 	return
 
