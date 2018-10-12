@@ -41,7 +41,7 @@ def ian_wallet():
 	wallet_value = BTC_value + BCH_value + LTC_value + ETH_value
 	
 	#PRINTS
-	print(str(datetime.time))
+	print(datetime.datetime.now())
 	print("Wallet value: $" + str(wallet_value))
 
 def guest_wallet(name):
