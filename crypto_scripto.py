@@ -18,8 +18,8 @@ def main():
 	return
 	
 def identity_check():
-	name = input("-------------------------------------------------------------------\nPlease enter your name: ")
-	if name.lower() == "ian":
+	name = input("-------------------------------------------------------------------\nPlease enter your name: ").lower()
+	if name == "ian":
 		print("-------------------------------------------------------------------")
 		ian_wallet()
 		main()
@@ -28,6 +28,10 @@ def identity_check():
 		main()
 
 def ian_wallet():
+	prompt = input("-------------------------------------------------------------------\nHave there been any changes in your holdings? ").lower() 
+	if (prompt == "y" or prompt == "yes"):
+		print("\ntoo bad, enter the new values in the code, this project is dumb")
+		return
 	#Wallet amounts
 	BTC_quant = 0.5271
 	LTC_quant = 9.00727417
