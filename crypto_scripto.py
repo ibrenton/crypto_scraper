@@ -30,7 +30,7 @@ def identity_check():
 def ian_wallet():
 	prompt = input("-------------------------------------------------------------------\nHave there been any changes in your holdings? ").lower() 
 	if (prompt == "y" or prompt == "yes"):
-		print("\ntoo bad, enter the new values in the code, this project is dumb")
+		print("\nToo bad, enter the new values in the code, this project is dumb")
 		return
 	#Wallet amounts
 	BTC_quant = 0.5271
